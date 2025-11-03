@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* Custom dark variant for Tailwind */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Light mode styles */
+body {
+  @apply transition-colors duration-500 text-gray-800;
+  overflow-x: hidden;
+  background: linear-gradient(to bottom right, theme('colors.indigo.100'), theme('colors.violet.200'));
+}
+
+/* Dark mode styles */
+body:where(.dark, .dark *) {
+  @apply text-gray-100;
+  background: linear-gradient(to bottom right, theme('colors.gray.900'), theme('colors.gray.800'));
+}
