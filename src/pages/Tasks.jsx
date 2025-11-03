@@ -122,7 +122,7 @@ export default function Tasks() {
                 </h1>
                 </div>
                 {/* Filter Buttons */}
-                <div className="flex flex-wrap md:justify-center items-center justify-around gap-3 sm:gap-4 mb-4 px-2">
+                <div className="flex w-full md:justify-center items-center justify-around gap-3 sm:gap-4 mb-4 px-2">
                     {["All", "Active", "Completed"].map((t) => {
                         const count =
                             t === "All"
@@ -176,23 +176,23 @@ export default function Tasks() {
                 </div>
 
                 {/* Add Task */}
-                <div className="flex flex-col gap-4  md:gap-0
-                md:flex-row items-center mb-3 bg-white/20 dark:bg-gray-700/40 rounded-xl px-3 py-2 transition hover:bg-white/30 dark:hover:bg-gray-700/60">
+                <div className="flex flex-col md:flex-row items-center gap-3 mb-3 bg-white/20 dark:bg-gray-700/40 rounded-xl px-3 py-2 transition hover:bg-white/30 dark:hover:bg-gray-700/60 w-full">
                     <input
                         type="text"
                         placeholder="Add a new task..."
                         value={Todo}
                         onChange={(e) => setTodo(e.target.value)}
                         onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-                        className="flex-1 px-4 py-2 md:rounded-l-md border rounded-lg border-indigo-500 dark:border-indigo-700 focus:ring-1 w-full md:w-auto focus:ring-indigo-500 outline-none bg-white/50 dark:bg-gray-800 text-gray-800 dark:text-gray-100"
+                        className="flex-1 px-4 py-2 rounded-lg md:rounded-l-lg border border-indigo-500 dark:border-indigo-700 focus:ring-1 focus:ring-indigo-500 outline-none bg-white/50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 w-full"
                     />
                     <button
                         onClick={handleAdd}
-                        className="p-2.5  bg-indigo-700 hover:bg-indigo-900 text-white md:rounded-r-md rounded-lg w-full md:w-auto transition flex items-center justify-center gap-2 font-semibold cursor-pointer"
+                        className="px-4 py-2 md:rounded-r-lg rounded-lg w-full md:w-auto bg-indigo-700 hover:bg-indigo-900 text-white flex items-center justify-center gap-2 font-semibold transition cursor-pointer"
                     >
                         <FaPlus /> {editId ? "Update" : "Add"}
                     </button>
                 </div>
+
 
                 {/* Category & Priority */}
                 <div className="flex gap-3 mb-5">
@@ -277,17 +277,18 @@ export default function Tasks() {
                             <div className="flex gap-2 justify-end w-full sm:w-auto mt-3 sm:mt-0">
                                 <button
                                     onClick={() => handleEdit(item.id)}
-                                    className="p-2 hover:bg-indigo-200 dark:hover:bg-indigo-600 rounded-full transition cursor-pointer"
+                                    className="p-3 sm:p-2 hover:bg-indigo-200 dark:hover:bg-indigo-600 rounded-full transition cursor-pointer flex items-center justify-center"
                                 >
-                                    <FaEdit className="text-yellow-600 dark:text-yellow-400" />
+                                    <FaEdit className="text-2xl  text-yellow-600 dark:text-yellow-400" />
                                 </button>
                                 <button
                                     onClick={() => handleDelete(item.id)}
-                                    className="p-2 hover:bg-red-200 dark:hover:bg-red-700 rounded-full transition cursor-pointer"
+                                    className="p-3 sm:p-2 hover:bg-red-200 dark:hover:bg-red-700 rounded-full transition cursor-pointer flex items-center justify-center"
                                 >
-                                    <FaTrash className="text-red-600 dark:text-red-400" />
+                                    <FaTrash className="text-xl  text-red-600 dark:text-red-400" />
                                 </button>
                             </div>
+
                         </li>
                     ))}
                 </ul>
