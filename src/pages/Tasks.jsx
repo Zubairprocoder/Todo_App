@@ -16,6 +16,16 @@ export default function Tasks() {
     const [search, setSearch] = useState("");
     const [filterCategory, setFilterCategory] = useState("All");
 
+    // Inside your component, after defining filteredTodos
+    const totalTasks = Todos.length;
+    const completedTasks = Todos.filter((t) => t.isCompleted).length;
+    const activeTasks = totalTasks - completedTasks;
+
+    const allPercent = totalTasks ? Math.round((totalTasks / totalTasks) * 100) : 0;
+    const activePercent = totalTasks ? Math.round((activeTasks / totalTasks) * 100) : 0;
+    const completedPercent = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+
     // Load + Save localStorage
     useEffect(() => {
         const stored = JSON.parse(localStorage.getItem("todos"));
@@ -115,11 +125,11 @@ export default function Tasks() {
             <div className="w-full max-w-xl bg-white/30 dark:bg-gray-800/60 backdrop-blur-md 
                             border border-white/40 dark:border-gray-700 rounded-3xl 
                             shadow-2xl p-6 transition-all hover:shadow-indigo-200 dark:hover:shadow-gray-900">
-                                <div className="flex items-center text-center justify-center gap-3 py-3 md:py-5">
-                <img src="https://img.icons8.com/?size=160&id=ACLAf31fuu2O&format=png" alt="Todoapp" width={50} className="pb-5" />
-                <h1 className="md:text-3xl text-xl font-bold text-indigo-700 dark:text-indigo-300 mb-6 text-center">
-                    🧩 Smart Todo List App
-                </h1>
+                <div className="flex items-center text-center justify-center gap-3 py-3 md:py-5">
+                    <img src="https://img.icons8.com/?size=160&id=ACLAf31fuu2O&format=png" alt="Todoapp" width={50} className="pb-5" />
+                    <h1 className="md:text-3xl text-xl font-bold text-indigo-700 dark:text-indigo-300 mb-6 text-center">
+                        🧩 Smart Todo List App
+                    </h1>
                 </div>
                 {/* Filter Buttons */}
                 <div className="flex w-full md:justify-center items-center justify-around gap-3 sm:gap-4 mb-4 px-2">
@@ -146,6 +156,25 @@ export default function Tasks() {
                             </button>
                         );
                     })}
+                </div>
+                {/* Progress Bar */}
+                <div className="w-full mt-2 mb-5">
+                    <div className="relative w-full h-4 bg-gray-300 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div
+                            className="absolute top-0 left-0 h-4 bg-indigo-600 transition-all duration-500"
+                            style={{ width: `${activePercent}%` }}
+                            title={`Active: ${activePercent}%`}
+                        />
+                        <div
+                            className="absolute top-0 left-0 h-4 bg-green-500 transition-all duration-500"
+                            style={{ width: `${completedPercent}%` }}
+                            title={`Completed: ${completedPercent}%`}
+                        />
+                    </div>
+                    <div className="flex justify-between text-xs mt-1 text-gray-700 dark:text-gray-300 font-medium">
+                        <span>Active: {activePercent}%</span>
+                        <span>Completed: {completedPercent}%</span>
+                    </div>
                 </div>
 
                 {/* Search + Category */}
@@ -274,22 +303,22 @@ export default function Tasks() {
                                         {item.category} • {item.priority}
                                     </span>
                                 </div>
-                            
 
-                            <div className="flex gap-2 justify-end items-center sm:w-auto mt-3 sm:mt-0">
-                                <button
-                                    onClick={() => handleEdit(item.id)}
-                                    className="p-3 sm:p-2 hover:bg-indigo-200 dark:hover:bg-indigo-600 rounded-full transition cursor-pointer flex items-center justify-center"
-                                >
-                                    <FaEdit className="text-xl  text-yellow-600 dark:text-yellow-400" />
-                                </button>
-                                <button
-                                    onClick={() => handleDelete(item.id)}
-                                    className="p-3 sm:p-2 hover:bg-red-200 dark:hover:bg-red-700 rounded-full transition cursor-pointer flex items-center justify-center"
-                                >
-                                    <FaTrash className="text-xl  text-red-600 dark:text-red-400" />
-                                </button>
-                            </div>
+
+                                <div className="flex gap-2 justify-end items-center sm:w-auto mt-3 sm:mt-0">
+                                    <button
+                                        onClick={() => handleEdit(item.id)}
+                                        className="p-3 sm:p-2 hover:bg-indigo-200 dark:hover:bg-indigo-600 rounded-full transition cursor-pointer flex items-center justify-center"
+                                    >
+                                        <FaEdit className="text-xl  text-yellow-600 dark:text-yellow-400" />
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(item.id)}
+                                        className="p-3 sm:p-2 hover:bg-red-200 dark:hover:bg-red-700 rounded-full transition cursor-pointer flex items-center justify-center"
+                                    >
+                                        <FaTrash className="text-xl  text-red-600 dark:text-red-400" />
+                                    </button>
+                                </div>
                             </div>
                         </li>
                     ))}
