@@ -115,14 +115,14 @@ export default function Tasks() {
             <div className="w-full max-w-xl bg-white/30 dark:bg-gray-800/60 backdrop-blur-md 
                             border border-white/40 dark:border-gray-700 rounded-3xl 
                             shadow-2xl p-6 transition-all hover:shadow-indigo-200 dark:hover:shadow-gray-900">
-                                <div className="flex items-center text-center justify-center gap-3 py-5">
+                                <div className="flex items-center text-center justify-center gap-3 py-3 md:py-5">
                 <img src="https://img.icons8.com/?size=160&id=ACLAf31fuu2O&format=png" alt="Todoapp" width={50} className="pb-5" />
-                <h1 className="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-6 text-center">
+                <h1 className="md:text-3xl text-xl font-bold text-indigo-700 dark:text-indigo-300 mb-6 text-center">
                     🧩 Smart Todo List App
                 </h1>
                 </div>
                 {/* Filter Buttons */}
-                <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-4 px-2">
+                <div className="flex flex-wrap md:justify-center items-center justify-around gap-3 sm:gap-4 mb-4 px-2">
                     {["All", "Active", "Completed"].map((t) => {
                         const count =
                             t === "All"
@@ -135,7 +135,7 @@ export default function Tasks() {
                             <button
                                 key={t}
                                 onClick={() => setFilter(t)}
-                                className={`px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm sm:text-base transition cursor-pointer flex items-center justify-center gap-1 sm:gap-2
+                                className={`px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm sm:text-base transition cursor-pointer flex items-center md:justify-center justify-around gap-1 sm:gap-2
                                 ${filter === t
                                         ? "bg-indigo-600 text-white shadow-lg scale-105"
                                         : "bg-white/40 dark:bg-gray-700 hover:bg-indigo-200 dark:hover:bg-indigo-600 text-gray-800 dark:text-gray-100"
@@ -176,18 +176,19 @@ export default function Tasks() {
                 </div>
 
                 {/* Add Task */}
-                <div className="flex items-center mb-3 bg-white/20 dark:bg-gray-700/40 rounded-xl px-3 py-2 transition hover:bg-white/30 dark:hover:bg-gray-700/60">
+                <div className="flex flex-col gap-4  md:gap-0
+                md:flex-row items-center mb-3 bg-white/20 dark:bg-gray-700/40 rounded-xl px-3 py-2 transition hover:bg-white/30 dark:hover:bg-gray-700/60">
                     <input
                         type="text"
                         placeholder="Add a new task..."
                         value={Todo}
                         onChange={(e) => setTodo(e.target.value)}
                         onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-                        className="flex-1 px-4 py-2 rounded-l-md border border-indigo-500 dark:border-indigo-700 focus:ring-1 focus:ring-indigo-500 outline-none bg-white/50 dark:bg-gray-800 text-gray-800 dark:text-gray-100"
+                        className="flex-1 px-4 py-2 md:rounded-l-md border rounded-lg border-indigo-500 dark:border-indigo-700 focus:ring-1 w-full md:w-auto focus:ring-indigo-500 outline-none bg-white/50 dark:bg-gray-800 text-gray-800 dark:text-gray-100"
                     />
                     <button
                         onClick={handleAdd}
-                        className="p-2.5 bg-indigo-700 hover:bg-indigo-900 text-white rounded-r-md transition flex items-center gap-2 font-semibold cursor-pointer"
+                        className="p-2.5  bg-indigo-700 hover:bg-indigo-900 text-white md:rounded-r-md rounded-lg w-full md:w-auto transition flex items-center justify-center gap-2 font-semibold cursor-pointer"
                     >
                         <FaPlus /> {editId ? "Update" : "Add"}
                     </button>
@@ -228,48 +229,43 @@ export default function Tasks() {
                 </div>
 
                 {/* Task List */}
-                <ul className="space-y-3">
+                <ul className="space-y-3 px-2 sm:px-0">
                     {filteredTodos.length === 0 && (
                         <p className="text-center text-gray-600 dark:text-gray-300 text-sm">No tasks found</p>
                     )}
+
                     {filteredTodos.map((item) => (
                         <li
                             key={item.id}
-                            className={`flex justify-between items-center rounded-xl px-4 py-3 border border-white/30 dark:border-gray-700 backdrop-blur-sm transition transform hover:scale-105 duration-300
-                                ${selected.includes(item.id)
+                            className={`flex flex-col sm:flex-row justify-between items-start sm:items-center rounded-xl px-4 py-3 border border-white/30 dark:border-gray-700 backdrop-blur-sm transition transform hover:scale-105 duration-300
+        ${selected.includes(item.id)
                                     ? "bg-red-100 dark:bg-red-900/40"
                                     : editId === item.id
                                         ? "bg-yellow-100 dark:bg-yellow-900/30"
                                         : "bg-white/20 dark:bg-gray-800/40 hover:bg-white/40 dark:hover:bg-gray-700/50"
                                 }`}
                         >
-                            <div className="flex items-center gap-3 w-50">
-                                <input
-                                    type="checkbox"
-                                    checked={selected.includes(item.id)}
-                                    onChange={() => toggleSelect(item.id)}
-                                    className="w-4 h-4 accent-pink-600 cursor-pointer"
-                                    title="Select for delete"
-                                />
-                                <input
-                                    type="checkbox"
-                                    checked={item.isCompleted}
-                                    onChange={() => handleCheckbox(item.id)}
-                                    className="w-4 h-4 accent-indigo-600 cursor-pointer"
-                                />
-                                <FaCheckCircle
-                                    className={`${item.isCompleted
-                                        ? "text-green-500"
-                                        : "text-gray-400 dark:text-gray-500"
-                                        } cursor-pointer`}
-                                />
-                                <div className="cursor-pointer">
-                                    <p
-                                        className={`font-medium ${item.isCompleted
-                                            ? "line-through text-gray-500 dark:text-gray-400"
-                                            : "text-gray-800 dark:text-gray-100"
-                                            }`}
-                                    >
+                            <div className="flex flex-col sm:flex-row w-full items-start sm:items-center gap-3 sm:gap-5">
+                                <div className="flex gap-2 items-center">
+                                    <input
+                                        type="checkbox"
+                                        checked={selected.includes(item.id)}
+                                        onChange={() => toggleSelect(item.id)}
+                                        className="w-4 h-4 accent-pink-600 cursor-pointer"
+                                        title="Select for delete"
+                                    />
+                                    <input
+                                        type="checkbox"
+                                        checked={item.isCompleted}
+                                        onChange={() => handleCheckbox(item.id)}
+                                        className="w-4 h-4 accent-indigo-600 cursor-pointer"
+                                    />
+                                    <FaCheckCircle
+                                        className={`${item.isCompleted ? "text-green-500" : "text-gray-400 dark:text-gray-500"} cursor-pointer`}
+                                    />
+                                </div>
+                                <div className="cursor-pointer mt-2 sm:mt-0">
+                                    <p className={`font-medium ${item.isCompleted ? "line-through text-gray-500 dark:text-gray-400" : "text-gray-800 dark:text-gray-100"}`}>
                                         {item.Todo}
                                     </p>
                                     <span className="text-xs text-gray-600 dark:text-gray-400">
@@ -277,7 +273,8 @@ export default function Tasks() {
                                     </span>
                                 </div>
                             </div>
-                            <div className="flex gap-2">
+
+                            <div className="flex gap-2 justify-end w-full sm:w-auto mt-3 sm:mt-0">
                                 <button
                                     onClick={() => handleEdit(item.id)}
                                     className="p-2 hover:bg-indigo-200 dark:hover:bg-indigo-600 rounded-full transition cursor-pointer"
@@ -294,6 +291,7 @@ export default function Tasks() {
                         </li>
                     ))}
                 </ul>
+
 
                 {/* Multi Delete */}
                 {selected.length > 0 && (

@@ -1,16 +1,51 @@
-# React + Vite
+# 🧩 Smart Todo List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **Todo App** built with **React + Vite** and **TailwindCSS**, featuring add, edit, delete, search, filter, category, priority, multi-delete, and **localStorage persistence**. Fully responsive and works on mobile and desktop.
 
-Currently, two official plugins are available:
+**Live Demo:** [Todo App](https://todo-app-by-zubaircoder.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Add and update tasks  
+- Mark tasks as completed  
+- Filter tasks: All, Active, Completed  
+- Search tasks by name or category  
+- Categorize tasks (General, Work, Personal, Study, Health)  
+- Set task priority (Low, Normal, High)  
+- Multi-delete selected tasks  
+- Clear all tasks  
+- Mobile responsive UI with dark mode support  
+- Persistent storage using localStorage  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- **React** (with Hooks)  
+- **Vite** for fast dev & build  
+- **TailwindCSS** for styling  
+- **React-icons** for icons  
+- **React-toastify** for notifications  
+
+---
+
+## Screenshots
+
+![Todo App Screenshot](https://img.icons8.com/?size=160&id=ACLAf31fuu2O&format=png)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 16
+- npm >= 8
+
+### Installation
+
+1. Clone the repository:  
+```bash
+git clone <https://github.com/Zubairprocoder/Todo_App.git>
