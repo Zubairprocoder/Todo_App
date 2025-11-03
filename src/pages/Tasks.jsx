@@ -135,7 +135,7 @@ export default function Tasks() {
                             <button
                                 key={t}
                                 onClick={() => setFilter(t)}
-                                className={`px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm sm:text-base transition cursor-pointer flex items-center md:justify-center justify-around gap-1 sm:gap-2
+                                className={`px-3 sm:px-4 py-2 rounded-lg font-semibold text-base sm:text-base transition cursor-pointer flex items-center md:justify-center justify-around gap-1 sm:gap-2
                                 ${filter === t
                                         ? "bg-indigo-600 text-white shadow-lg scale-105"
                                         : "bg-white/40 dark:bg-gray-700 hover:bg-indigo-200 dark:hover:bg-indigo-600 text-gray-800 dark:text-gray-100"
@@ -245,7 +245,7 @@ export default function Tasks() {
                                         : "bg-white/20 dark:bg-gray-800/40 hover:bg-white/40 dark:hover:bg-gray-700/50"
                                 }`}
                         >
-                            <div className="flex flex-col sm:flex-row w-full items-start sm:items-center gap-3 sm:gap-5">
+                            <div className="flex flex-col sm:flex-row md:w-25 w-full  items-start sm:items-center gap-3 sm:gap-5">
                                 <div className="flex gap-2 items-center">
                                     <input
                                         type="checkbox"
@@ -264,7 +264,9 @@ export default function Tasks() {
                                         className={`${item.isCompleted ? "text-green-500" : "text-gray-400 dark:text-gray-500"} cursor-pointer`}
                                     />
                                 </div>
-                                <div className="cursor-pointer mt-2 sm:mt-0">
+                            </div>
+                            <div className="flex items-center justify-around gap-3 w-full pt-2 md:pt-0">
+                                <div className="cursor-pointer mt-2 sm:mt-0 w-full">
                                     <p className={`font-medium ${item.isCompleted ? "line-through text-gray-500 dark:text-gray-400" : "text-gray-800 dark:text-gray-100"}`}>
                                         {item.Todo}
                                     </p>
@@ -272,14 +274,14 @@ export default function Tasks() {
                                         {item.category} • {item.priority}
                                     </span>
                                 </div>
-                            </div>
+                            
 
-                            <div className="flex gap-2 justify-end w-full sm:w-auto mt-3 sm:mt-0">
+                            <div className="flex gap-2 justify-end items-center sm:w-auto mt-3 sm:mt-0">
                                 <button
                                     onClick={() => handleEdit(item.id)}
                                     className="p-3 sm:p-2 hover:bg-indigo-200 dark:hover:bg-indigo-600 rounded-full transition cursor-pointer flex items-center justify-center"
                                 >
-                                    <FaEdit className="text-2xl  text-yellow-600 dark:text-yellow-400" />
+                                    <FaEdit className="text-xl  text-yellow-600 dark:text-yellow-400" />
                                 </button>
                                 <button
                                     onClick={() => handleDelete(item.id)}
@@ -288,7 +290,7 @@ export default function Tasks() {
                                     <FaTrash className="text-xl  text-red-600 dark:text-red-400" />
                                 </button>
                             </div>
-
+                            </div>
                         </li>
                     ))}
                 </ul>
